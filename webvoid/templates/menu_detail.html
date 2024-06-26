@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ menu.item_name }}</title>
+</head>
+<body>
+    <h1>{{ menu.item_name }}</h1>
+    <p>Price: ${{ menu.price }}</p>
+    <p>Description: {{ menu.description }}</p>
+    <p>Rating: {{ menu.rating }} stars</p>
+    <p>Main Ingredients: {{ menu.main_ingredients }}</p>
+    {% if menu.restaurant %}
+    <p>Back to Restaurant <a href="{% url 'restaurant_detail' menu.restaurant.id %}">{{ menu.restaurant.name }}</a></p>
+    {% endif %}
+
+    <h2>Item Name : {{menu.item_name}}</h2>
+    <ul>
+        {% for image in images %}
+        <li>
+            <img src="{{ image.image.url }}" alt="Image of {{ menu.item_name }}" style="width:200px;height:200px;">
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Reviews</h2>
+    <ul>
+        {% for review in reviews %}
+            <li>
+                Rating: {{ review.review_rating }} stars <br>
+                Comment: {{ review.comment }}
+            </li>
+        {% endfor %}
+    </ul>
+    {% if menu.restaurant %}
+    <a href="{% url 'restaurant_detail' menu.restaurant.id %}">Back to Menu</a>
+    {% endif %}
+
+
+    
+</body>
+</html>

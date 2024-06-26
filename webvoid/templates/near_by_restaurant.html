@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant List</title>
+</head>
+<body>
+    <h1>Restaurant List</h1>
+
+    <!-- Form to fetch user location -->
+    <form id="locationForm" method="POST" action="{% url 'near_by_restaurant' %}">
+        {% csrf_token %}
+        <!-- <button id="fetchLocationBtn" type="button">Fetch My Location</button> -->
+        <input type="hidden" id="latitudeInput" name="latitude">
+        <input type="hidden" id="longitudeInput" name="longitude">
+        <button type="submit" id="submitBtn">Find Nearby Restaurants</button>
+        <p>Latitude: <span id="latitudeDisplay"></span></p>
+        <p>Longitude: <span id="longitudeDisplay"></span></p>
+    </form>
+
+    <!-- Restaurant List -->
+    <h2>Displaying Nearest Restaurants</h2>
+ 
+
+    <div id="location"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        fetchUserLocation();
+        // Attach event listener to fetchLocationBtn
+        document.getElementById('fetchLocationBtn').addEventListener('click', fetchUserLocation);
+
+        // Function to fetch user location
+        function fetchUserLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        // Success callback function for fetching location
+        function showPosition(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+
+            // Update hidden form fields
+            document.getElementById('latitudeInput').value = latitude;
+            document.getElementById('longitudeInput').value = longitude;
+
+            // Update UI with fetched coordinates
+            document.getElementById("latitudeDisplay").textContent = latitude.toFixed(6); // Limit to 6 decimal places for display
+            document.getElementById("longitudeDisplay").textContent = longitude.toFixed(6);
+
+            // Enable submit button
+            document.getElementById('submitBtn').disabled = false;
+        }
+
+        // Error callback function for fetching location
+        function showError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
