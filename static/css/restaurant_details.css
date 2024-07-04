@@ -1,0 +1,193 @@
+/* #Below navbar main heading */
+/* styles.css */
+
+
+.main_heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.left-content {
+    display: flex;
+    align-items: baseline; /* Align items vertically */
+    font-weight: bold;
+}
+.left-content span{
+    margin-left: 20px;
+}
+/* Website Stylings */
+.left-content a{
+    margin-left: 10px;
+    color: black;
+    margin-left: 0px;
+    text-decoration: dotted;
+}
+.left-content a:hover{
+    color: blue;
+}
+
+.left-content #website:hover{
+    color: blue;
+}
+.website-div:hover{
+    color: blue;
+}
+
+.left-content #website{
+    margin-left: 20px;
+}
+
+
+
+.right-content {
+    display: flex;
+    align-items: baseline; /* Align items vertically */
+}
+.right-content>p{
+    font-weight: bold;
+    color: green;
+    align-items: baseline;
+}
+.right-content>span{
+    color: black;
+}
+
+
+/* styles.css */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+img {
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+img:hover {
+    transform: scale(1.03);
+}
+
+.images-container {
+    display: flex;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 450px; /* Adjust height as needed */
+}
+
+.main-image {
+    flex: 65%; /* 65% width */
+    margin-right: 10px;
+    height: 100%; /* Ensure it takes the full height */
+    position: relative;
+    overflow: hidden;
+}
+
+.main-image img {
+    width: 100%;
+    height: 100%; /* Ensure the image covers the container */
+    object-fit: cover;
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.main-image img:hover {
+    transform: scale(1.1); /* Zoom in effect */
+}
+
+.side-images {
+    flex: 35%; /* 35% width */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.side-images img {
+    width: 100%;
+    height: calc(50% - 5px); /* Adjust height as needed */
+    object-fit: cover;
+    transition: transform 0.3s ease, filter 0.3s ease; /* Smooth transition */
+}
+
+.side-images img:hover {
+    transform: scale(1.05); /* Slight zoom in effect */
+    filter: brightness(0.8); /* Darken effect */
+}
+
+.side-images img:last-child {
+    margin-bottom: 0;
+}
+
+.restaurant-details {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.restaurant-details p {
+    margin: 5px 0;
+}
+
+/* SVG Icon Image */
+.sub_heading{
+    margin-bottom: 10px;
+    display: flex;
+    align-items: baseline;
+    font-size: 16px;
+
+}
+/* <!-- Mobile Phone /Calling Section --> */
+
+#mobile_number{
+    margin-right: 5px;
+    color: black;
+    font-size: 20px;
+}
+#mobile_number_a{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 16px;
+}
+/* <!-- Map Section --> */
+
+#map_section{
+    font-size: 20px;
+    margin-right: 5px;
+}
+#map_section_a{
+    cursor: pointer;
+    color: black;
+}
+#restaurant_type{
+    margin-left: 10px;
+}
+#opening_hours{
+    margin-left: 10px;
+}
+.sub_heading #opening_hours{
+    color: green;
+    font-weight: bold;
+}
+
+/* Back to Hotels Buttons */
+/* CSS for the "Back to Hotels" button */
+.back-to-hotels-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1b0aff; /* Button background color */
+    color: #fff; /* Button text color */
+    text-decoration: none; /* Remove underline */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    font-weight: bold; /* Font weight */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.back-to-hotels-btn:hover {
+    background-color: #0000ff; /* Darker blue on hover */
+}
+

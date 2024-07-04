@@ -1,0 +1,16 @@
+.navbar-test{
+    color: rgb(189, 28, 28);
+}
+.search{
+    width: 300px;
+    background-color: antiquewhite;
+}
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+
+#company_name{
+    color : rgb(255, 127, 62);
+    font-family: "Caveat", cursive;
+    font-size: 30px;
+}
+
+
