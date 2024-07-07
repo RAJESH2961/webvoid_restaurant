@@ -1,0 +1,118 @@
+    /* Container and Layout */
+    .menu-container {
+        margin-top: 20px;
+        height: 80vh;
+        /* margin-bottom: 50px; */
+    }
+    .menu-content {
+        display: flex;
+        justify-content: space-between;
+    }
+    .menu-image {
+        max-width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Details Section */
+    .menu-details {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+    .menu-details h3 {
+        color: #333;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+    .menu-details p {
+        color: #555;
+        line-height: 1.6;
+    }
+    .menu-details strong {
+        color: #222;
+    }
+    .menu-details p:last-child {
+        margin-bottom: 0;
+    }
+    .menu-details hr {
+        border-top: 1px solid #ddd;
+        margin: 20px 0;
+    }
+    .menu-container {
+        margin-top: 20px;
+    }
+
+    .menu-image {
+        max-width: 100%;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu-details {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu-details h3 {
+        color: maroon
+    }
+
+    .menu-details p {
+        color: #555;
+    }
+
+    .menu-details strong {
+        color: #222;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .menu-content {
+            flex-direction: column;
+        }
+        .menu-details {
+            margin-top: 20px;
+        }
+    }
+
+/* Fixing the card size */
+
+.fixed-size-image {
+    width: 100%; /* Ensure the image takes full width of the container */
+    height: 400px; /* Fixed height */
+    object-fit: cover; /* Cover the entire container area without distortion */
+    border-radius: 5px; /* Optional: Add some rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a box shadow for better appearance */
+    cursor: pointer;
+}
+.image-container {
+    position: relative;
+    overflow: hidden; /* Ensures content stays within container */
+}
+
+.menu-image {
+    max-width: 100%; /* Ensure image stays within its container */
+    display: block;
+    transition: transform 0.3s ease; /* Transition for image on hover */
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    color: #fff;
+    padding: 20px;
+    transform: translateY(100%); /* Initially hide content off-screen */
+    transition: transform 0.3s ease; /* Transition for content on hover */
+}
+
+.image-container:hover .image-overlay {
+    transform: translateY(0); /* Move content up on hover */
+}

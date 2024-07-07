@@ -143,60 +143,96 @@
     padding: 20px;
 }
 /* The card is are used after Restaurant stylings */
-/* card stylings Starts Here */
-.card {
-    position: relative;
-    overflow: hidden;
-    height: 370px;
-    border-radius: 15px 15px 15px 15px;
-    border: none;
-    transition: transform 0.2s;
 
-}
-.card:hover{
-  border: none;
-  box-shadow: 1px 1px 15px rgba(197, 197, 197, 0.2);
-  cursor: pointer;
-  transform: scale(1.05);
-
-}
-.card img {
-  height: 50%;
-  border-radius: 15px;
-  transition: all 0.3s ease;
-  object-fit: cover;
-
-}
-
-.card .overlay {
-position: absolute;
-bottom: -100%;
-left: 0;
-width: 100%;
-height: 55%;
-background-color: rgba(0, 0, 0, 0.2);
-color: white;
-text-shadow: 1px 1px 14px rgb(96, 76, 195);
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-/* transition: bottom 0.5s ease; */
-}
-
-.card:hover .overlay {
-bottom: 49%;
-}
-
-.card:hover .card-img-top {
-filter:blur(0.51px);
-transform: scale(1.1);
-}
-
-
-/* Restaurant Content Starts Here */
-.heading_text{
+/* Accordion */
+#accordion{
+    margin: 10px 20px;
     color: var(--heading-color);
-    margin: 9px 0px 9px 10px;
+}
+/* testimonials code starts from here */
+#testimonian-heading{
+    color: var(--heading-color);
+
+}
+.testimonials-section {
+    padding: 50px 0;
+    background-color: #f9f9f9;
+    text-align: center;
 }
 
+.testimonial {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.testimonial blockquote {
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.testimonial cite {
+    display: block;
+    margin-top: 10px;
+    font-style: italic;
+    color: #666666;
+    font-size: 14px;
+}
+
+.testimonial:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+.testimonial {
+    border: 2px solid #007bff;
+    background-color: #f8f9fa;
+    padding: 15px;
+}
+
+.testimonial blockquote {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.testimonial cite {
+    font-style: normal;
+    font-weight: 600;
+    color: #333;
+    margin-top: 10px;
+}
+
+.testimonial {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.testimonial blockquote {
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.testimonial cite {
+    display: block;
+    margin-top: 10px;
+    font-style: italic;
+    color: #666666;
+}
+
+.testimonial:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+/* testimonials code Ends from here */

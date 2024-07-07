@@ -50,3 +50,14 @@ class RestaurantImage(models.Model):
 
     def __str__(self):
         return f"Image for {self.restaurant.name}"
+class Menu(models.Model):
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='menus')
+    menu_name = models.CharField(max_length=100)
+    amount = models.DecimalField(max_digits=5, decimal_places=2)
+    menu_image = models.ImageField(upload_to='menu_images/')
+    related_menu_details = models.TextField()
+    ratings = models.IntegerField(choices=[(i, str(i)) for i in range(1, 6)])
+    ingredients = models.TextField()
+    
+    def __str__(self):
+        return self.menu_name

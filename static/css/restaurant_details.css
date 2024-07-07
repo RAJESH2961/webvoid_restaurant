@@ -53,6 +53,14 @@
 .right-content>span{
     color: black;
 }
+/* this media queries is to manage main heading */
+@media (max-width: 650px) {
+    .main_heading{
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+    }
+}
 
 
 /* styles.css */
@@ -130,14 +138,45 @@ img:hover {
     margin: 5px 0;
 }
 
-/* SVG Icon Image */
-.sub_heading{
+/* General styling for .sub_heading */
+/* General styling for .sub_heading */
+.sub_heading {
+    display: flex;
+    flex-wrap: wrap; /* Ensure the content wraps when there's not enough space */
+    gap: 10px; /* Adjust the gap between elements */
+    align-items: center;
     margin-bottom: 10px;
     display: flex;
     align-items: baseline;
     font-size: 16px;
-
 }
+
+/* Styling for the info blocks */
+.info-block {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Adjust the gap between the icon and the text */
+}
+/* Ensure the p and span elements inside info-block align properly */
+.info-block p,
+.info-block span,
+.info-block a {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+/* Media query for screen sizes 500px and below */
+@media (max-width: 500px) {
+    .sub_heading {
+        flex-direction: column; /* Stack elements vertically */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    .info-block {
+        width: 100%; /* Ensure the info blocks take full width */
+    }
+}
+
 /* <!-- Mobile Phone /Calling Section --> */
 
 #mobile_number{
@@ -175,19 +214,100 @@ img:hover {
 
 /* Back to Hotels Buttons */
 /* CSS for the "Back to Hotels" button */
-.back-to-hotels-btn {
+/* .back-to-hotels-btn {
     display: inline-block;
     padding: 10px 20px;
     background-color: #1b0aff; /* Button background color */
-    color: #fff; /* Button text color */
-    text-decoration: none; /* Remove underline */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 16px; /* Font size */
-    font-weight: bold; /* Font weight */
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    /* color: #fff; Button text color */
+    /* text-decoration: none; Remove underline */
+    /* border-radius: 5px; Rounded corners */
+    /* font-size: 16px; Font size */
+    /* font-weight: bold; Font weight */
+    /* transition: background-color 0.3s ease; Smooth transition for hover effect */
+/* } */
+
+/* .back-to-hotels-btn:hover { */
+    /* background-color: #0000ff; Darker blue on hover */
+/* }  */
+
+/* menu_list.css */
+
+.card {
+    height: 450px; /* Fixed height for the card */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: none;
+    transition: border-radius 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+    
 }
 
-.back-to-hotels-btn:hover {
-    background-color: #0000ff; /* Darker blue on hover */
+.card-img-container {
+    height: 250px; /* Fixed height for the image container */
+    overflow: hidden; /* Ensures any overflow is hidden */
 }
+
+.card-img-top {
+    width: 100%; /* Ensure the image takes full width of the container */
+    height: 100%; /* Ensure the image takes full height of the container */
+    object-fit: cover; /* Cover the entire container area without distortion */
+}
+.card-img-top:hover{
+    border-radius: 20px;
+}
+.card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card:hover{
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px rgb(0, 0, 0);
+    padding: 10px;
+}
+/* This Media queries is to manage card height */
+@media (max-width: 850px) {
+    .card {
+        height: 350px;
+    }
+}
+#get-directions-button{
+    outline: none;
+    border-radius: 14px solid black;
+    text-decoration: none;
+    height: 44px;
+    width: 150px;
+    padding: 5px 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    color: black;
+}
+/* directions-reserve-table starts here */
+.directions-reserve-table {
+    display: flex;
+    align-items: center;
+}
+
+.directions-reserve-table a {
+    text-decoration: none;
+    color: #333;
+    margin-right: 20px;
+    display: inline-flex;
+    align-items: center; /* Align icon and text vertically */
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.directions-reserve-table a:hover {
+    background-color: #c9c9c9;
+    color: black;
+}
+
+.directions-reserve-table a i {
+    margin-right: 5px; /* Adjust icon spacing */
+}
+
+
 

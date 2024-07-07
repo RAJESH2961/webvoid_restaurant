@@ -14,6 +14,11 @@ urlpatterns = [
     # path('nearby-restaurant_list/', restaurant_list, name='restaurant_list'),
     path('restaurants', restaurant_list, name='restaurant_list'),
     path('restaurants/<int:pk>/', restaurant_detail, name='restaurant_detail'),
+
+    path('menu/', views.menu_detail, name='menu_detail'),
+    path('menu/<int:pk>/', views.menu_detail, name='menu_detail'),
+
+
     
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

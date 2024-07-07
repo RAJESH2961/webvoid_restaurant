@@ -1,0 +1,61 @@
+/* card stylings Starts Here */
+.card {
+    position: relative;
+    overflow: hidden;
+    height: 370px;
+    border-radius: 15px 15px 15px 15px;
+    border: none;
+    transition: transform 0.2s;
+}
+.card:hover{
+  border: none;
+  box-shadow: 1px 1px 15px rgba(197, 197, 197, 0.2);
+  cursor: pointer;
+  transform: scale(1.05);
+
+}
+.card img {
+  height: 50%;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  object-fit: cover;
+
+}
+
+.card .overlay {
+position: absolute;
+bottom: -100%;
+left: 0;
+width: 100%;
+height: 55%;
+background-color: rgba(0, 0, 0, 0.2);
+color: white;
+text-shadow: 1px 1px 14px rgb(96, 76, 195);
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+/* transition: bottom 0.5s ease; */
+}
+
+.card:hover .overlay {
+bottom: 49%;
+}
+
+.card:hover .card-img-top {
+filter:blur(0.51px);
+transform: scale(1.1);
+}
+.card-title{
+    color : rgb(255, 127, 62);
+
+}
+
+
+/* Restaurant Content Starts Here */
+.heading_text{
+    color: var(--heading-color);
+    margin: 9px 0px 9px 10px;
+}
+
+

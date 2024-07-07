@@ -1,0 +1,58 @@
+{% extends "base_templates/base.html" %}
+{% load static %}
+
+{% block title %}Restaurants{% endblock title %}
+
+{% block css %}
+<!-- External CSS -->
+<link rel="stylesheet" href="{% static './css/restaurants.css' %}">
+{% endblock css %}
+
+{% block body %}
+<!-- Restaurant Content Starts Here -->
+{% if restaurants %}
+          <h2 class="heading_text" >Here is What ! found</h2>
+          <div class="container-fluid">
+            <div class="row">
+                {% for restaurant in restaurants %}
+                    <div class="col-md-4 col-lg-3 col-sm-6 mb-4">
+                        <div class="card">
+                            <!-- <a href="{% url 'restaurant_detail' restaurant.id %}" class="card-link"> -->
+                          {% if restaurant.images.all %}
+                          <img src="{{ restaurant.images.all.0.image.url }}" class="card-img-top" alt="{{ restaurant.name }}">
+                          {% else %}
+                          <!-- is the restaurant is not present it will show the default image of the hotel -->
+                          <img src="{% static 'images/main.jpg' %}" class="card-img-top" alt="Default Image">
+                          {% endif %}
+                          <div class="overlay">
+                            <h2>{{ restaurant.restaurant_style }}</h2>
+                          </div>
+
+                            <div class="card-body">
+                                <h5 class="card-title">{{ restaurant.name }}</h5>
+                                <h5>Restaurant Type - {{ restaurant.restaurant_style }}</h5>
+                                <!-- Add more details about the restaurant if needed -->
+                                 <span class="text-success fw-bold" >Opening Hours <b style="color: black;">{{ restaurant.opening_hours }}</b></span><br>
+                                 <!-- <a href="{{ restaurant.google_map_link }}" target="_blank" class="btn btn-primary mt-2">View on Map</a> -->
+                                 <a href="{% url 'restaurant_detail' restaurant.id %}" target="_blank" class="btn btn-primary mt-3">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% else %}
+            <p>Present No restaurants available At this moment! Try with More Kilometers.</p>
+        {% endif %}
+
+
+{% endblock body %}
+
+    <!-- Adding External Script files -->
+    {% block script %}
+    <script src="{% static 'js/location.js' %}"></script>
+    <script>
+                    window.onload = fetchUserLocation;
+
+    </script>
+    {% endblock script %}

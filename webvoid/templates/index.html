@@ -50,43 +50,6 @@
 
             </div>
           </div>
-
-<!-- Restaurant Content Starts Here -->
-{% if restaurants %}
-          <h1 class="heading_text" >Displaying Restaurants</h1>
-          <div class="container-fluid">
-            <div class="row">
-                {% for restaurant in restaurants %}
-                    <div class="col-md-4 col-lg-3 col-sm-6 mb-4">
-                        <div class="card">
-                          <a href="{% url 'restaurant_detail' restaurant.id %}" ></a>
-
-                          {% if restaurant.images.all %}
-                          <img src="{{ restaurant.images.all.0.image.url }}" class="card-img-top" alt="{{ restaurant.name }}">
-                          {% else %}
-                          <!-- is the restaurant is not present it will show the default image of the hotel -->
-                          <img src="{% static 'images/main.jpg' %}" class="card-img-top" alt="Default Image">
-                          {% endif %}
-                          <div class="overlay">
-                            <h2>{{ restaurant.restaurant_style }}</h2>
-                          </div>
-
-                            <div class="card-body">
-                                <h5 class="card-title">{{ restaurant.name }}</h5>
-                                <!-- Add more details about the restaurant if needed -->
-                                 <span class="text-success fw-bold" >Opening Hours <b style="color: black;">{{ restaurant.opening_hours }}</b></span><br>
-                                 <a href="{{ restaurant.google_map_link }}" target="_blank" class="btn btn-primary mt-2">View on Map</a>
-                                 <a href="{% url 'restaurant_detail' restaurant.id %}" class="btn btn-primary">View Details</a>
-
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-        {% else %}
-            <p>Present No restaurants available At this moment! Try with More Kilometers.</p>
-        {% endif %}
         
 
 
@@ -94,7 +57,7 @@
 
 
 <!-- Accordion Frequently Asked Questions-->
- <h3>Frequently Asked Questions</h3>
+ <h3 id="accordion">Frequently Asked Questions</h3>
  <div class="accordion" id="accordionExample">
      <div class="accordion-item">
        <h2 class="accordion-header">
@@ -123,13 +86,13 @@
      <div class="accordion-item">
        <h2 class="accordion-header">
          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-           Accordion Item #3
+          Can I book a table or order food directly through your website?
          </button>
        </h2>
        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
          <div class="accordion-body">
-           <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-         </div>
+           <strong>Currently, </strong> we provide information and recommendations about restaurants. You can visit the restaurant's official website or contact them directly for reservations or food orders.
+
        </div>
      </div>
    </div>
@@ -137,83 +100,32 @@
 
           </div>
 
+<section class="testimonials-section">
+  <h2 id="testimonian-heading" >What Users Are Saying</h2>
 
-          <script>
-           // Function to fetch user location
-            // Call getLocation when the page loads
-        window.onload = fetchUserLocation;
-           
-function fetchUserLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition, showError, {
-            enableHighAccuracy: true,
-            timeout: 10000,
-            maximumAge: 0
-        });
-    } else {
-        alert("Geolocation is not supported by this browser.");
-    }
-}
+    <div class="testimonial">
+        <blockquote>
+            "Great website! I found amazing restaurants near my location easily."
+        </blockquote>
+        <cite>- John Doe</cite>
+    </div>
 
-// Success callback function for fetching location
-function showPosition(position) {
-    var latitude = position.coords.latitude;
-    var longitude = position.coords.longitude;
+    <div class="testimonial">
+        <blockquote>
+            "Fantastic service! I love how quickly I can find nearby attractions."
+        </blockquote>
+        <cite>- Jane Smith</cite>
+    </div>
 
-    console.log(latitude)
-    console.log(longitude)
- 
+    <div class="testimonial">
+        <blockquote>
+            "Highly recommended! This website has become my go-to for local information."
+        </blockquote>
+        <cite>- Michael Johnson</cite>
+    </div>
+</section>
 
- 
-            // Set the values of hidden fields
-            document.getElementById('latitudeDisplay').value = latitude;
-            document.getElementById('longitudeDisplay').value = longitude;
-
-    // Call the function to get the city name
-    getCityName(latitude, longitude);
-}
-
-// Error callback function for fetching location
-function showError(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            alert("User denied the request for Geolocation.");
-            break;
-        case error.POSITION_UNAVAILABLE:
-            alert("Location information is unavailable.");
-            break;
-        case error.TIMEOUT:
-            alert("The request to get user location timed out.");
-            break;
-        case error.UNKNOWN_ERROR:
-            alert("An unknown error occurred.");
-            break;
-    }
-}
-
-// Add event listener to the button
-document.querySelector('.search-nearby-btn').addEventListener('click', function(event) {
-    event.preventDefault();
-    fetchUserLocation();
-});
-
-
-// Getting City name using nominatim Open street API
-async function getCityName(latitude, longitude) {
-            const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&addressdetails=1`;
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-                const city = data.address.city || data.address.town || data.address.village || "City not found";
-
-                document.getElementById("city").textContent = city;
-                // document.getElementById("city1").textContent = `Displaying Restaurants in ${city}`;
-                document.getElementById("city1").textContent = `Your Location : ${city}`;
-            } catch (error) {
-                console.error("Error fetching city name:", error);
-            }
-        }
         
-        </script>
+
 
 {% endblock body %}

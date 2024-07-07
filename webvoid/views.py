@@ -5,14 +5,14 @@ def index(req):
     return render(req, "index.html")
 # myapp/views.py
 from django.shortcuts import render
-from .models import Restaurant
+from .models import Restaurant,Menu
 from .utils import haversine
 
 def restaurant_list(request):
     if request.method == 'POST':
         user_lat = request.POST.get('latitude')
         user_lng = request.POST.get('longitude')
-        radius = request.POST.get('radius',2) #By default it displays the restuarants Upto 5Km. when the user Enters The Kilomenter then it will considered
+        radius = request.POST.get('radius') #By default it displays the restuarants Upto 5Km. when the user Enters The Kilomenter then it will considered
 
         # # Debug: Print the received values
         # print('Received Latitude:', user_lat)
@@ -38,9 +38,9 @@ def restaurant_list(request):
         else:
             filtered_restaurants = Restaurant.objects.all()
 
-        return render(request, 'index.html', {'restaurants': filtered_restaurants })
+        return render(request, 'restaurants.html', {'restaurants': filtered_restaurants })
 
-    return render(request, 'index.html', {'restaurants': []})
+    return render(request, 'restaurants.html', {'restaurants': []})
 
 
 
@@ -48,4 +48,10 @@ from django.shortcuts import render, get_object_or_404
 
 def restaurant_detail(request, pk):
     restaurant = get_object_or_404(Restaurant, pk=pk)
-    return render(request, 'restaurant_details.html', {'restaurant': restaurant})
+    menus = Menu.objects.filter(restaurant=restaurant)
+    return render(request, 'restaurant_details.html', {'restaurant': restaurant , 'menus': menus})
+
+
+def menu_detail(request, pk):
+    menu = get_object_or_404(Menu, pk=pk)
+    return render(request, 'menu_detail.html', {'menu': menu})
