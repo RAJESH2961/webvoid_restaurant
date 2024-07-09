@@ -1,41 +1,137 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ menu.item_name }}</title>
-</head>
-<body>
-    <h1>{{ menu.item_name }}</h1>
-    <p>Price: ${{ menu.price }}</p>
-    <p>Description: {{ menu.description }}</p>
-    <p>Rating: {{ menu.rating }} stars</p>
-    <p>Main Ingredients: {{ menu.main_ingredients }}</p>
-    {% if menu.restaurant %}
-    <p>Back to Restaurant <a href="{% url 'restaurant_detail' menu.restaurant.id %}">{{ menu.restaurant.name }}</a></p>
-    {% endif %}
+{% extends "base_templates/base.html" %}
+{% load static %}
 
-    <h2>Item Name : {{menu.item_name}}</h2>
-    <ul>
-        {% for image in images %}
-        <li>
-            <img src="{{ image.image.url }}" alt="Image of {{ menu.item_name }}" style="width:200px;height:200px;">
-        </li>
+{% block title %}{{ menu.menu_name }}{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/menu_detail.css' %}">
+<style>
+
+.rating-star {
+    color: green; /* Default color for stars */
+    font-size: 20px; /* Adjust as needed */
+}
+
+</style>
+{% endblock css %}
+
+{% block body %}
+<div class="container menu-container">
+    <!-- <h1 class="my-4">{{ menu.menu_name }}</h1> -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="image-container">
+                <img src="{{ menu.menu_image.url }}" class="img-fluid menu-image fixed-size-image" alt="{{ menu.name }}">
+                <div class="image-overlay">
+                    <h3> {{menu.restaurant}} | <small>{{ menu.menu_name }}</small></h3>
+                    <p>{{ menu.description }}</p>
+                </div>
+            </div>
+
+        </div>
+
+        
+        
+        <div class="col-md-6">
+            <h1 class="my-4">{{ menu.menu_name }}</h1>
+            <div class="menu-details">
+                <h3>Amount: &#8377; {{ menu.amount }}</h3>
+                <p><strong>Details:</strong> {{ menu.related_menu_details }}</p>
+                <p><strong>Ratings:</strong>
+                    {% if menu.ratings == 1 %}
+                        <span class="rating-star">&#9733;&#9734;&#9734;&#9734;&#9734;</span>
+                    {% elif menu.ratings == 2 %}
+                        <span class="rating-star">&#9733;&#9733;&#9734;&#9734;&#9734;</span>
+                    {% elif menu.ratings == 3 %}
+                        <span class="rating-star">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
+                    {% elif menu.ratings == 4 %}
+                        <span class="rating-star">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                    {% elif menu.ratings == 5 %}
+                        <span class="rating-star">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                    {% endif %}
+                </p>
+                <p><strong>Ingredients:</strong> {{ menu.ingredients }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+
+<h2>Leave a Review about {{ menu.menu_name }}</h2>
+<form method="post" action=" ">
+    {% csrf_token %}
+    <input type="hidden" name="menu_id" value="{{ menu.id }}" >
+    <!-- <label for="user_name">Your Name:</label> -->
+    <input type="text" id="user_name" name="user_name" required placeholder="Enter Your Name">
+    <!-- <label for="rating">Rating:</label> -->
+    <select id="rating" name="rating" required>
+        <option value="">Select Your Ratings</option>
+        <option value="1">😞 Poor</option>
+        <option value="2">😕 Fair</option>
+        <option value="3">😐 Average</option>
+        <option value="4">😊 Good</option>
+        <option value="5">😄 Excellent</option>
+    </select>
+    <!-- <label for="review_text">Review:</label> -->
+    <textarea id="review_text" name="review_text" rows="4" required placeholder=" Write a Review about {{ menu.menu_name }}"></textarea>
+
+    <button type="submit" onclick="formSubmitted()">Submit Review</button>
+</form>
+
+
+<div class="reviews-container">
+    <h1>Discover What Our Customers Say about {{ menu.menu_name }}</h1>
+    {% if menureviews %}
+    <div class="reviews-row">
+        {% for review in menureviews %}
+        <div class="review">
+            <div class="review-header">
+                <h2>{{ review.user_name }}</h2>
+                <p class="review-date">Reviewed on: {{ review.created_at|date:"F d, Y H:i" }}</p>
+            </div>
+            <div class="review-body">
+                <div class="rating">
+                    <span>Ratings : {{ review.rating }}</span>
+
+                    {% if review.rating == 1 %}
+                    <span class="rating-star" style="color: #ff0000;">&#9733;</span>
+                    <span class="rating-star-black">&#9734;&#9734;&#9734;&#9734;</span>
+                    {% elif review.rating == 2 %}
+                    <span class="rating-star" style="color: #e74c3c;">&#9733;&#9733;</span>
+                    <span class="rating-star-black">&#9734;&#9734;&#9734;</span>
+                    {% elif review.rating == 3 %}
+                    <span class="rating-star" style="color: #f39c12;">&#9733;&#9733;&#9733;</span>
+                    <span class="rating-star-black">&#9734;&#9734;</span>
+                    {% elif review.rating == 4 %}
+                    <span class="rating-star" style="color: #f39c12;">&#9733;&#9733;&#9733;&#9733;</span>
+                    <span class="rating-star-black">&#9734;</span>
+                    {% elif review.rating == 5 %}
+                    <span class="rating-star" style="color: green;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                    {% endif %}
+                </div>
+                <p class="review-text">{{ review.review_text }}</p>
+                <span class="read-more">Read More</span>
+            </div>
+        </div>
         {% endfor %}
-    </ul>
-
-    <h2>Reviews</h2>
-    <ul>
-        {% for review in reviews %}
-            <li>
-                Rating: {{ review.review_rating }} stars <br>
-                Comment: {{ review.comment }}
-            </li>
-        {% endfor %}
-    </ul>
-    {% if menu.restaurant %}
-    <a href="{% url 'restaurant_detail' menu.restaurant.id %}">Back to Menu</a>
+    </div>
+    {% else %}
+    <p>Current No reviews available for <strong>{{ menu.menu_name }}</strong> .</p>
     {% endif %}
+</div>
+{% endblock body %}
 
-
-    
-</body>
-</html>
+{% block script %}
+<script src="{% static './js/location.js' %}"></script>
+<script>
+                        function formSubmitted(){
+                        var userName = document.getElementById('user_name').value;
+                
+                        // Define your alert message
+                        var alertMessage = " Review Submitted SuccessFully "
+            
+                        // Alert the message with the user's name
+                        alert(" Thanks " + userName + alertMessage);
+                    }
+</script>
+{% endblock script %}

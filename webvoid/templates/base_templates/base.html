@@ -11,7 +11,7 @@
     {% block favicon %}
     <!-- {% load static %} -->
     <!-- <link rel="icon" href="{% static 'images/logo/webvoid_logo.jpg'}" type="image/x-icon"> -->
-    <!-- <link rel="icon" href="{% static 'images/logo/logo.png' %}" type="image/jpeg"> -->
+    <link rel="icon" href="{% static './images/favicon.png' %}" type="image/png">
 
     {% endblock favicon %}
 
@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
         integrity="sha512-F5H1Z5A2XkN7wp/+f6v5k43G5RnKU8uIamzA4r4F3O0pfiAlxfYctXhfrD2mw1Zz3lnjZshv0U1M6l35V8NLug=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
 
@@ -40,6 +41,8 @@
             margin: 0px;
             box-sizing: border-box;
         }
+
+        
 
         /* kanit */
         @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -69,6 +72,7 @@
 
     <!-- Adding External Script files -->
     {% block script %}
+    <script src="{% static './js/location.js' %}"></script>
     {% endblock script %}
 
 
@@ -79,6 +83,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
+
 
 </body>
 
