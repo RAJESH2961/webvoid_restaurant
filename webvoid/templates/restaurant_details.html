@@ -8,11 +8,19 @@
 {% block css %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/restaurant_details.css' %}">
+
 <style>
     #map {
         width: 100%;
         height: 500px;
         border: 0;
+    }
+
+    .rating-star {
+        color: green;
+        /* Default color for stars */
+        font-size: 20px;
+        /* Adjust as needed */
     }
 </style>
 
@@ -20,31 +28,45 @@
 
 
 {% block body %}
+
 <div class="container-fluid">
     <div class="main_heading">
         <div class="left-content">
             <h1>{{ restaurant.name }} </h1><span> {{ restaurant.address }}</span>
             <!-- Website Stylings -->
-             <div class="website-div">
-                <i class="fa-solid fa-laptop-code" id="website"></i><a href="{{ restaurant.website_link }}" target="_blank">Website</a>
-             </div>
+            <div class="website-div">
+                <i class="fa-solid fa-laptop-code" id="website"></i><a href="{{ restaurant.website_link }}"
+                    target="_blank">Website</a>
+            </div>
         </div>
         <div class="right-content">
-            <p>Opening Hours :</p> <span> {{ restaurant.opening_hours }}</span>
+            <!-- <p>Opening Hours :</p> <span> {{ restaurant.opening_hours }}</span> -->
         </div>
     </div>
     <div class="sub_heading">
         <!-- Mobile Phone /Calling Section -->
-        <i class="fa-sharp fa-solid fa-phone" style="color: #1b0aff;" id="mobile_number"></i>
-        <a href="tel:+91{{ restaurant.contact_number }}" target="_blank" id="mobile_number_a">{{ restaurant.contact_number }}</a>
+        <div class="info-block">
+            <i class="fa-sharp fa-solid fa-phone" style="color: #1b0aff;" id="mobile_number"></i>
+            <a href="tel:+91{{ restaurant.contact_number }}" target="_blank"
+                id="mobile_number_a">{{restaurant.contact_number }}</a>
+        </div>
         <!-- Map Section -->
-        <i class="fa-regular fa-map" style="color: #ff0000;" id="map_section"></i>
-        <a href="{{ restaurant.google_map_link }}" target="_blank" id="map_section_a">Show Directions In Maps</a>
+        <div class="info-block">
+
+            <i class="fa-regular fa-map" style="color: #ff0000;" id="map_section"></i>
+            <a href="{{ restaurant.google_map_link }}" target="_blank" id="map_section_a">Show Directions In Maps</a>
+        </div>
         <!-- Restaurant type Section -->
-         <p id="restaurant_type"> | {{ restaurant.restaurant_style }} Restaurant</p>
-         <!-- Opening Hours Section -->
-         <p id="opening_hours">| Opening Hours :</p> <span> {{ restaurant.opening_hours }}</span>
+        <div class="info-block">
+            <p id="restaurant_type">| {{ restaurant.restaurant_style }} Restaurant</p>
+        </div>
+        <!-- Opening Hours Section -->
+        <div class="info-block">
+            <p id="opening_hours">| Opening Hours :</p>
+            <span>{{ restaurant.opening_hours }}</span>
+        </div>
     </div>
+
 
     <!-- Images Container -->
     <div class="images-container">
@@ -66,30 +88,188 @@
                 {% endfor %}
         </div>
     </div>
-<a href="{% url 'restaurant_list' %}" class="back-to-hotels-btn">Back to Hotels</a>
-
-<h2>Menu</h2>
-<ul>
-    <ul>
-        {% for menu in restaurant.menus.all %}
-        <li>
-            <a href="{% url 'menu_detail' menu.id %}">{{ menu.item_name }}</a> - ${{ menu.price }} <br> {{
-            menu.description }} <br> Rating: {{ menu.rating }} stars
-        </li>
-        {% endfor %}
-    </ul>
+    <!-- <a href="{% url 'restaurant_list' %}" class="back-to-hotels-btn">Back to Hotels</a> -->
+    <!-- Example: Button to Get Directions -->
+    <div class="directions-reserve-table">
+        <a href="{{ restaurant.google_map_link }}" target="_blank" id="get-directions-button">
+            <i class="fa-solid fa-route" style="color: #ff0000;"></i> Get Directions
+        </a>
+        <a id="reserve-button" href="#">Reserve Table</a>
+        <!-- Link to scroll to the form -->
+        <a id="write-a-review-button" href="#review-form">Write a Review</a>
+    </div>
 
 
-    {{dataa.id}}
+
+    <!-- Menu section starts from here -->
+    <div class="container-fluid menu-div">
+        <h4 style="margin: 10px; padding: 10px;">Displaying Menu</h4>
+        <div class="row">
+            {% for menu in menus %}
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-4">
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="{{ menu.menu_image.url }}" class="card-img-top fixed-size-image"
+                            alt="{{ menu.name }}">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold" style="color: #4C3BCF;">{{ menu.menu_name }}</h5>
+                        <p class="card-text"><strong>Amount: &#8377;</strong> {{ menu.amount }}</p>
+                        <p><strong>Ratings:</strong>
+                            {% if menu.ratings == 1 %}
+                            <span class="rating-star">&#9733;&#9734;&#9734;&#9734;&#9734;</span>
+                            {% elif menu.ratings == 2 %}
+                            <span class="rating-star">&#9733;&#9733;&#9734;&#9734;&#9734;</span>
+                            {% elif menu.ratings == 3 %}
+                            <span class="rating-star">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
+                            {% elif menu.ratings == 4 %}
+                            <span class="rating-star">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                            {% elif menu.ratings == 5 %}
+                            <span class="rating-star">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                            {% endif %}
+                        </p>
+                        <a href="{% url 'menu_detail' menu.id %}" class="btn btn-primary mt-auto">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <hr>
+
+    <!-- Alert message -->
+    <!-- Bootstrap alert and review form heading -->
+    <div id="review-form-heading-div">
+        <div id="review-heading-section">
+            <div id="review-heading">
+                <h4>Share something about {{ restaurant.name }}</h4>
+            </div>
+        </div>
+        <!-- <div id="review-popup-bootstrap">
+            {% if alert_message %}
+            <div class="alert custom-alert alert-dismissible fade show" role="alert">
+                {{ alert_message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endif %}
+        </div> -->
+
+    </div>
+
+
+
+    <!-- Review form -->
+    <div id="review-form">
+
+        <form class="review-form" method="post" action=" ">
+            <!--here action is empyt becuease it is doing the process in the same page-->
+            {% csrf_token %}
+            <input type="hidden" name="restaurant_id" value="{{ restaurant.id }}">
+            <input type="text" id="user_name" name="user_name" placeholder="Enter Your Name" required><br>
+            <textarea name="review_text" placeholder="Write a  Review about {{ restaurant.name }}" rows="4"
+                required>
+            </textarea><br>
+
+            <!-- Select dropdown for rating -->
+            <select name="rating" required>
+                <option value="">Select Rating (1-5)</option>
+                <option value="1">1 - Poor</option>
+                <option value="2">2 - Fair</option>
+                <option value="3">3 - Average</option>
+                <option value="4">4 - Good</option>
+                <option value="5">5 - Excellent</option>
+            </select><br>
+
+            <button type="submit" onclick="formSubmitted()" class="btn btn-primary">Submit Review</button>
+        </form>
+    </div>
+    <div class="reviews-container">
+        <h1>Discover What Our Customers Say about {{ restaurant.name }}</h1>
+        {% if reviews %}
+        <div class="reviews-row">
+            {% for review in reviews %}
+            <div class="review">
+                <div class="review-header">
+                    <h2>{{ review.user_name }}</h2>
+                    <p class="review-date">Reviewed on: {{ review.created_at|date:"F d, Y H:i" }}</p>
+                </div>
+                <div class="review-body">
+                    <div class="rating">
+                        <span>Ratings : {{ review.rating }}</span>
+
+                        {% if review.rating == 1 %}
+                        <span class="rating-star" style="color: #ff0000;">&#9733;</span>
+                        <span class="rating-star-black">&#9734;&#9734;&#9734;&#9734;</span>
+                        {% elif review.rating == 2 %}
+                        <span class="rating-star" style="color: #e74c3c;">&#9733;&#9733;</span>
+                        <span class="rating-star-black">&#9734;&#9734;&#9734;</span>
+                        {% elif review.rating == 3 %}
+                        <span class="rating-star" style="color: #f39c12;">&#9733;&#9733;&#9733;</span>
+                        <span class="rating-star-black">&#9734;&#9734;</span>
+                        {% elif review.rating == 4 %}
+                        <span class="rating-star" style="color: #f39c12;">&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="rating-star-black">&#9734;</span>
+                        {% elif review.rating == 5 %}
+                        <span class="rating-star" style="color: green;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        {% endif %}
+                    </div>
+                    <p class="review-text">{{ review.review_text }}</p>
+                    <span class="read-more">Read More</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>Current No reviews available for {{ restaurant.name }}.</p>
+        {% endif %}
+    </div>
+
+
+
+
     <h1>Embedded Map Example</h1>
-    <iframe id="map"
-        src="https://google.com/maps/place/India/@{{ restaurant.longitude }},{{ restaurant.latitude }},5z/data=!3m1!4b1!4m6!3m5!1s0x30635ff06b92b791:0xd78c4fa1854213a6!8m2!3d20.593684!4d78.96288!16zL20vMDNyazA?entry=ttu"
-        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
     <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31549764.003339864!2d71.93289533813757!3d14.895830892555399!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30635ff06b92b791%3A0xd78c4fa1854213a6!2sIndia!5e0!3m2!1sen!2sin!4v1718874942902!5m2!1sen!2sin"
-        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    width="600"
+    height="450"
+    frameborder="0" style="border:0"
+    src="https://www.openstreetmap.org/export/embed.html?bbox={{ restaurant.longitude }}%2C{{ restaurant.latitude }}%2C{{ restaurant.longitude }}%2C{{ restaurant.latitude }}&amp;layer=cycle"
+    allowfullscreen>
+</iframe>
+
+
+
+
 
     {% endblock body %}
+
+
+
+    <!-- Adding External Script files -->
+    {% block script %}
+    <script src="{% static 'js/location.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const readMoreButtons = document.querySelectorAll('.read-more');
+            readMoreButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const reviewText = this.previousElementSibling;
+                    reviewText.classList.toggle('expanded');
+                    this.textContent = reviewText.classList.contains('expanded') ? 'Read Less' : 'Read More';
+                });
+            });
+        });
+        function formSubmitted(){
+            var userName = document.getElementById('user_name').value;
+    
+            // Define your alert message
+            var alertMessage = " {{ alert_message }} "
+
+            // Alert the message with the user's name
+            alert(" Thanks " + userName + alertMessage);
+        }
+
+    </script>
+
+    {% endblock script %}
