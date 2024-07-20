@@ -1,3 +1,32 @@
 .navbar-test{
-    color: coral;
+    color: rgb(189, 28, 28);
 }
+.search{
+    width: 300px;
+    background-color: antiquewhite;
+}
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+
+#company_name{
+    color : rgb(255, 127, 62);
+    font-family: "Caveat", cursive;
+    font-size: 30px;
+}
+
+/* Rotating the pizza image😁 */
+.pizza-image > img {
+    width: 50px;
+    height: 50px;
+    animation: rotateInfinite 1s linear infinite;
+}
+
+@keyframes rotateInfinite {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+

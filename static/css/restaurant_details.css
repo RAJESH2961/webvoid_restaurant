@@ -1,0 +1,568 @@
+/* #Below navbar main heading */
+/* styles.css */
+
+:root{
+    --card-border-color: #EB5B00;
+}
+
+
+.main_heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.left-content {
+    display: flex;
+    align-items: baseline; /* Align items vertically */
+    font-weight: bold;
+}
+.left-content span{
+    margin-left: 20px;
+}
+/* Website Stylings */
+.left-content a{
+    margin-left: 10px;
+    color: black;
+    margin-left: 0px;
+    text-decoration: dotted;
+}
+.left-content a:hover{
+    color: blue;
+}
+
+.left-content #website:hover{
+    color: blue;
+}
+.website-div:hover{
+    color: blue;
+}
+
+.left-content #website{
+    margin-left: 20px;
+}
+
+
+
+.right-content {
+    display: flex;
+    align-items: baseline; /* Align items vertically */
+}
+.right-content>p{
+    font-weight: bold;
+    color: green;
+    align-items: baseline;
+}
+.right-content>span{
+    color: black;
+}
+/* this media queries is to manage main heading */
+@media (max-width: 650px) {
+    .main_heading{
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+    }
+}
+
+
+/* styles.css */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+img {
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+img:hover {
+    transform: scale(1.03);
+}
+
+.images-container {
+    display: flex;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 450px; /* Adjust height as needed */
+}
+
+.main-image {
+    flex: 65%; /* 65% width */
+    margin-right: 10px;
+    height: 100%; /* Ensure it takes the full height */
+    position: relative;
+    overflow: hidden;
+}
+
+.main-image img {
+    width: 100%;
+    height: 100%; /* Ensure the image covers the container */
+    object-fit: cover;
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.main-image img:hover {
+    transform: scale(1.1); /* Zoom in effect */
+}
+
+.side-images {
+    flex: 35%; /* 35% width */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.side-images img {
+    width: 100%;
+    height: calc(50% - 5px); /* Adjust height as needed */
+    object-fit: cover;
+    transition: transform 0.3s ease, filter 0.3s ease; /* Smooth transition */
+}
+
+.side-images img:hover {
+    transform: scale(1.05); /* Slight zoom in effect */
+    filter: brightness(0.8); /* Darken effect */
+}
+
+.side-images img:last-child {
+    margin-bottom: 0;
+}
+
+.restaurant-details {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.restaurant-details p {
+    margin: 5px 0;
+}
+
+/* General styling for .sub_heading */
+/* General styling for .sub_heading */
+.sub_heading {
+    display: flex;
+    flex-wrap: wrap; /* Ensure the content wraps when there's not enough space */
+    gap: 10px; /* Adjust the gap between elements */
+    align-items: center;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: baseline;
+    font-size: 16px;
+}
+
+/* Styling for the info blocks */
+.info-block {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Adjust the gap between the icon and the text */
+}
+/* Ensure the p and span elements inside info-block align properly */
+.info-block p,
+.info-block span,
+.info-block a {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+/* Media query for screen sizes 500px and below */
+@media (max-width: 500px) {
+    .sub_heading {
+        flex-direction: column; /* Stack elements vertically */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    .info-block {
+        width: 100%; /* Ensure the info blocks take full width */
+    }
+}
+
+/* <!-- Mobile Phone /Calling Section --> */
+
+#mobile_number{
+    margin-right: 5px;
+    color: black;
+    font-size: 20px;
+}
+#mobile_number_a{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 16px;
+}
+/* <!-- Map Section --> */
+
+#map_section{
+    font-size: 20px;
+    margin-right: 5px;
+}
+#map_section_a{
+    cursor: pointer;
+    color: black;
+}
+#restaurant_type{
+    margin-left: 10px;
+}
+#opening_hours{
+    margin-left: 10px;
+}
+.sub_heading #opening_hours{
+    color: green;
+    font-weight: bold;
+}
+
+/* Back to Hotels Buttons */
+/* CSS for the "Back to Hotels" button */
+/* .back-to-hotels-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1b0aff; /* Button background color */
+    /* color: #fff; Button text color */
+    /* text-decoration: none; Remove underline */
+    /* border-radius: 5px; Rounded corners */
+    /* font-size: 16px; Font size */
+    /* font-weight: bold; Font weight */
+    /* transition: background-color 0.3s ease; Smooth transition for hover effect */
+/* } */
+
+/* .back-to-hotels-btn:hover { */
+    /* background-color: #0000ff; Darker blue on hover */
+/* }  */
+
+/* menu_list.css */
+.card {
+    position: relative; /* Ensure the card is positioned relative for pseudo-elements */
+    height: 450px; /* Fixed height for the card */
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: space-between;
+    border: none;
+    transition: border-radius 0.5s ease-out, box-shadow 0.5s ease-out, padding 0.5s ease-out;
+    background: #fff; /* Card background color */
+}
+.card:hover{
+    box-shadow: 1 1px 8px var(--card-border-color);
+
+}
+
+.card::before, .card::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: none;
+    border-color: transparent;
+
+    transition: width 0.3s ease, height 0.3s ease, border 0.3s ease;
+}
+
+.card:hover::before {
+    width: 150px; /* Adjust the size as needed */
+    height: 150px; /* Adjust the size as needed */
+    border-top-color: var(--card-border-color);
+    border-right-color: var(--card-border-color);
+}
+
+.card::before {
+    top: -3px; /* Adjust to align with the card's edge */
+    right: -3px; /* Adjust to align with the card's edge */
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-style: solid;
+}
+
+.card::after {
+    bottom: -2px; /* Adjust to align with the card's edge */
+    left: -2px; /* Adjust to align with the card's edge */
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-style: solid;
+}
+
+.card:hover::after {
+    width: 150px; /* Adjust the size as needed */
+    height: 150px; /* Adjust the size as needed */
+    border-bottom-color: var(--card-border-color); /* Adjust the border color as needed */
+    border-left-color: var(--card-border-color); /* Adjust the border color as needed */
+}
+
+
+.card-img-container {
+    height: 200px; /* Fixed height for the image container */
+    overflow: hidden; /* Ensures any overflow is hidden */
+}
+
+.card-img-top {
+    width: 100%; /* Ensure the image takes full width of the container */
+    height: 100%; /* Ensure the image takes full height of the container */
+    object-fit: cover; /* Cover the entire container area without distortion */
+    transition: border-radius 0.1s linear;
+}
+
+.card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card:hover{
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px rgb(225, 154, 154);
+    /* padding: 10px; */
+    /* cursor: pointer; */
+}
+
+/* directions-reserve-table starts here */
+.directions-reserve-table {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 10px;
+    background-color: #d6e2ea;
+    padding: 20px;
+    box-shadow: 1px 1px 10px burlywood;
+}
+
+.directions-reserve-table a {
+    
+    margin-right: 20px;
+    display: inline-flex;
+    align-items: center; /* Align icon and text vertically */
+    padding: 10px 20px;
+}
+
+
+
+.directions-reserve-table a i {
+    margin-right: 5px; /* Adjust icon spacing */
+}
+
+
+/* MEnu-div styligns starts from here */
+.menu-div{
+    transition: all 1s ease-out;
+}
+
+#reserve-button, #write-a-review-button, #get-directions-button{
+    text-decoration: none;
+    color: black;
+    transition: all 0.3s ease-out;
+    border: none;
+    /* background-color :rgb(182, 0, 113); */
+}
+#write-a-review-button:hover{
+    background-color: #5A639C;
+    color: whitesmoke;
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 1px 1px 10px black;
+}
+#reserve-button:hover{
+    background-color: #EB5B00;
+    color: whitesmoke;
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 1px 1px 10px black;
+}
+#get-directions-button:hover{
+    background-color: #1555c4;
+    color: whitesmoke;
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 1px 1px 10px black;
+
+}
+
+.reviews-container {
+    width: 100%; /* Adjust the width as needed */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.reviews-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.reviews-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: -10px; /* Reduce the gap between reviews */
+    box-shadow: 1px 1px 5px orchid;
+}
+
+.review {
+    background-color: #f9f9f9;
+    border: none;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    width: calc(50% - 20px); /* Two reviews per row */
+    box-sizing: border-box;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4); /* Add box-shadow */
+}
+
+.review-header {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.review-header h2 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.review-date {
+    color: #2d2d2d;
+    font-size: 0.9em;
+}
+
+.review-body {
+    padding-top: 5px;
+}
+
+.rating {
+    font-weight: bold;
+    color: #000000; /* Adjust color as needed */
+}
+
+.review-text {
+    max-height: 4.5em; /* Approximate height for 3 lines */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: relative;
+    transition: max-height 0.3s ease;
+}
+
+.review-text.expanded {
+    max-height: none;
+    white-space: normal;
+}
+
+.read-more {
+    color: #3498db;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 0px;
+}
+
+@media (max-width: 768px) {
+    .review {
+        width: calc(100% - 20px); /* Single column layout on smaller screens */
+        margin: 10px 0; /* Adjust margin for single column layout */
+    }
+}
+
+/* rating stars color */
+.rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.rating-star {
+    font-size: 1.5em;
+    margin-right: 5px;
+    color: #000000; /* Default color for stars (yellow) */
+}
+.rating-star-black{
+    color: #000000 !important;
+    font-size: 1.3em;
+    margin-right: 5px;
+}
+
+/* Review form code  */
+.review-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.review-form input[type="text"],
+.review-form textarea,
+.review-form select,
+.review-form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+.review-form textarea {
+    resize: vertical; /* Allow vertical resizing of textarea */
+    height: 70px; /* Set a fixed height for the textarea */
+}
+.review-form select {
+    appearance: none; /* Remove default appearance on some browsers */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 30px; /* Add padding for the dropdown arrow */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>'); /* Custom dropdown arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+.review-form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.review-form button:hover {
+    background-color: #45a049;
+}
+/* review form heading */
+#review-form-heading-div{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    justify-content: center;
+    align-items: center;
+}
+#review-popup-bootstrap{
+    width: 71%;
+}
+#review-heading{
+    color: #e7450a;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/* Custom styles for the alert and aso bootstrap added in restaurant_setails.html file again overloaaded */
+/* Custom styles for the alert */
+.custom-alert {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #000000;
+    font-size: 1.3rem;
+}
+
+.custom-alert .close {
+    width: 50px;
+    height: 25px;
+    background-color: transparent;
+    text-align: center;
+    border: none;
+    font-size: 30px;
+}
+
+
+
