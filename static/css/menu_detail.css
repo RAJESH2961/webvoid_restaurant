@@ -1,3 +1,11 @@
+    :root{
+        --heading-color : rgb(255, 130, 37);
+        --subheading-color : rgb(180, 63, 63);
+        --font-color : rgb(0, 0, 0);
+    }
+    body{
+        background-color: #FFFAFA;
+    }
     /* Container and Layout */
     .menu-container {
         margin-top: 20px;
@@ -13,6 +21,9 @@
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
+    #menu-name{
+        color:var(--heading-color);
+    }
 
     /* Details Section */
     .menu-details {
@@ -23,14 +34,11 @@
         margin-top: 20px;
     }
     .menu-details h3 {
-        color: #333;
+        color: var(--subheading-color);
         font-size: 1.5rem;
         margin-bottom: 10px;
     }
-    .menu-details p {
-        color: #555;
-        line-height: 1.6;
-    }
+
     .menu-details strong {
         color: #222;
     }
@@ -63,7 +71,8 @@
     }
 
     .menu-details p {
-        color: #555;
+        color: var(--font-color);
+        line-height: 1.6;
     }
 
     .menu-details strong {
@@ -79,7 +88,13 @@
             margin-top: 20px;
         }
     }
-
+/* Reaview heading */
+#review-heading{
+    color: var(--subheading-color);
+    margin: 10px 20px;
+    padding: 10px;
+    
+}
 /* Fixing the card size */
 
 .fixed-size-image {
@@ -124,6 +139,7 @@ form {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
+    margin-bottom: 1rem;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -187,13 +203,14 @@ form .error {
 /* Style for reviews container */
 .reviews-container {
     /* max-width: 800px; */
-    margin: 0 auto;
+    margin: 20px;
     padding: 20px;
     background-color: #f9f9f9;
     border: 1px solid #ccc;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 
 /* Style for review */
 .review {
@@ -268,6 +285,7 @@ form .error {
 .reviews-container h1 {
     text-align: center;
     margin-bottom: 20px;
+    padding: 20px;
 }
 
 .reviews-row {

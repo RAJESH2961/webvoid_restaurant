@@ -12,6 +12,9 @@
     font-family: "Caveat", cursive;
     font-size: 30px;
 }
+.navbar{
+    background-color: rgba(168, 161, 161, 0);
+}
 
 /* Rotating the pizza image😁 */
 .pizza-image > img {

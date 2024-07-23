@@ -4,6 +4,8 @@ from .views import index
 from .views import restaurant_list,restaurant_detail
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
+
 
 
 
@@ -18,6 +20,9 @@ urlpatterns = [
     path('menu/<int:pk>/', views.menu_detail, name='menu_detail'),
     path('complaint/', views.submit_complaint, name='submit_complaint'),
     path('complaint-submitted/', views.complaint_submitted, name='complaint_submitted'),
+
+    path('contact/success/', TemplateView.as_view(template_name='contact_success.html'), name='contact_success'),
+
     
     
 

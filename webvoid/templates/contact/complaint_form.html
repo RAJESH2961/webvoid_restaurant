@@ -7,68 +7,90 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
+            background-color: #eaeaea; /* Soft off-white background color */
             margin: 0;
             padding: 0;
         }
+
         .container {
-            width: 50%;
+            width: 90%;
+            max-width: 600px;
             margin: 50px auto;
-            background-color: #fff;
-            padding: 20px;
+            background-color: #fdfdfd; /* Slightly off-white for the form */
+            padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
         h2 {
             text-align: center;
+            color: #333;
             margin-bottom: 20px;
         }
+
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
+
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
         }
-        .form-group input, .form-group textarea, .form-group select {
-            width: calc(100% - 22px);
-            padding: 10px;
-            border: 1px solid #ddd;
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
             border-radius: 4px;
+            box-sizing: border-box;
         }
+
         .form-group input[type="file"] {
+            padding: 0;
             border: none;
         }
+
         .form-group textarea {
-            height: 100px;
+            height: 120px;
             resize: vertical;
         }
+
         .form-group button {
-            display: block;
-            width: 100%;
-            padding: 10px;
             background-color: #007bff;
             border: none;
             color: #fff;
+            padding: 15px;
             font-size: 16px;
             border-radius: 4px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
         }
+
         .form-group button:hover {
             background-color: #0056b3;
         }
+
         .messages {
-            margin: 10px 0;
+            margin: 20px 0;
         }
+
         .message {
-            padding: 10px;
+            padding: 15px;
             border-radius: 4px;
             margin-bottom: 10px;
+            font-size: 16px;
         }
+
         .message.success {
             background-color: #d4edda;
             color: #155724;
         }
+
         .message.error {
             background-color: #f8d7da;
             color: #721c24;
@@ -89,23 +111,23 @@
             {% csrf_token %}
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" id="name" name="name" required>
+                <input type="text" id="name" name="name" placeholder="John Doe" required>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" placeholder="john@example.com" required>
             </div>
             <div class="form-group">
                 <label for="contact">Contact Number</label>
-                <input type="tel" id="contact" name="contact_number" required>
+                <input type="tel" id="contact" name="contact_number" placeholder="123-456-7890" required>
             </div>
             <div class="form-group">
-                <label for="restaurant_name">Restaurant Name, Location</label>
-                <input type="text" id="restaurant_name" name="restaurant_name" required>
+                <label for="restaurant_name">Restaurant Name & Location</label>
+                <input type="text" id="restaurant_name" name="restaurant_name" placeholder="Restaurant XYZ, Location" required>
             </div>
             <div class="form-group">
                 <label for="issue">Issue Description</label>
-                <textarea id="issue" name="issue_description" required></textarea>
+                <textarea id="issue" name="issue_description" placeholder="Describe the issue in detail" required></textarea>
             </div>
             <div class="form-group">
                 <label for="raised_to">Raised To</label>
@@ -122,7 +144,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="photo">Photo</label>
+                <label for="photo">Photo (optional)</label>
                 <input type="file" id="photo" name="photo" accept="image/*" capture="camera">
             </div>
             <div class="form-group">

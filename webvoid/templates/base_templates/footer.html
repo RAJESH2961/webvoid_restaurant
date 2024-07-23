@@ -1,60 +1,136 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+{% block css %}
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    {% block css %}
+<style>
+    :root {
+        --footer_heading-color: rgb(3, 4, 90);
+        --footer_base-color: black;
+    }
 
-    <style>
+    .footer {
+        background-color: rgb(234, 219, 200);
+        color: var(--footer_base-color);
+        text-align: left;
+        padding: 20px;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .footer .social-icons {
+        margin: 10px 0;
+    }
+
+    .footer .social-icons a {
+        color: var(--footer_base-color);
+        margin: 0 10px;
+        text-decoration: none;
+        font-size: 20px;
+    }
+
+    .footer .links {
+        margin: 20px 0;
+    }
+
+    .footer .links a {
+        color: var(--footer_base-color);
+        margin: 0 10px;
+        text-decoration: none;
+    }
+
+    .footer p {
+        margin: 5px 0;
+    }
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .links,
+    .Address,
+    .contact,
+    .social-icons {
+        flex: 1 1 200px;
+        /* Flex basis and growth/shrink */
+        margin: 10px;
+    }
+
+    .links a,
+    .contact a {
+        display: block;
+        padding: 0.3rem;
+    }
+
+    .heading {
+        color: var(--footer_heading-color);
+    }
+
+    @media (max-width: 468px) {
         .footer {
-            background-color: #03045e;
-            color: white;
+            padding: 20px 10px;
+        }
+
+        .container {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .links,
+        .Address,
+        .contact,
+        .social-icons {
+            flex: 1 1 100%;
+            /* Full width on smaller screens */
             text-align: center;
-            padding: 20px 0;
-            position: relative;
-            bottom: 0;
-            width: 100%;
         }
 
-        .footer .social-icons {
-            margin: 10px 0;
+        .social-icons a {
+            margin: 0 5px;
         }
+    }
 
-        .footer .social-icons a {
-            color: white;
-            margin: 0 10px;
-            text-decoration: none;
-            font-size: 20px;
-        }
+    #copy-right-section {
+        text-align: center;
+    }
+</style>
+{% endblock css %}
 
-        .footer .links {
-            margin: 20px 0;
-        }
+{% block body %}
+<!-- Footer Section -->
+<footer class="footer">
+    <div class="container">
+        <div class="links">
+            <a href="#aboutus">About us</a>
+            <a href="#">Terms and Conditions</a>
+            <a href="#">Privacy Policy</a>
+            <a href="{% url 'submit_complaint' %}" target="_blank">Raise a complaint</a>
+            <a href=".contact-container">Contact us</a>
+        </div>
 
-        .footer .links a {
-            color: white;
-            margin: 0 10px;
-            text-decoration: none;
-        }
+        <div class="Address">
+            <h4 class="heading">Address section</h4>
+            <p>123 Fake Street, Springfield, IL, 62701</p>
+            <p>India</p>
+        </div>
 
-        .footer p {
-            margin: 5px 0;
-        }
-    </style>
-        {% endblock css %}
-        {% block body %}
+        <div class="contact">
+            <h4 class="heading">Contact section</h4>
+            <a href="mailto:support@foodiefinder.com">support@foodiefinder.com</a>
+        </div>
 
-    <!-- Footer Section -->
-    <footer class="footer">
         <div class="social-icons">
+            <h4 class="heading">Follow us</h4>
             <a href="https://www.facebook.com/YourPage" target="_blank"><i class="fab fa-facebook-f"></i></a>
             <a href="https://www.twitter.com/YourPage" target="_blank"><i class="fab fa-twitter"></i></a>
             <a href="https://www.instagram.com/YourPage" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="https://www.linkedin.com/YourPage" target="_blank"><i class="fab fa-linkedin-in"></i></a>
         </div>
-        <div class="links">
-            <a href="#">Terms and Conditions</a>
-            <a href="#">Privacy Policy</a>
-        </div>
+    </div>
+    <div id="copy-right-section">
         <p>&copy; 2024 Food!e Finder. All rights reserved.</p>
-    </footer>
-    {% endblock body %}
 
-
+    </div>
+</footer>
+{% endblock body %}

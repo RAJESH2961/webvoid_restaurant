@@ -15,42 +15,45 @@
 
 {% block body %}
 <div class="full-screen-background">
-  <div class="left_main">
+  <!-- <h3>Discover Your perfect meal</h3> -->
+  <!-- <div class="left_main">
     <h1>Welcome to Foodie Finder </h1>
     <h2>Discover the Best Restaurants Near You</h2>
     <h4>FoodieFinder helps you explore a variety of dining options around your location. Whether you're craving local
       delicacies, exotic cuisines, or simply a cozy cafe, our platform makes it easy to find the perfect spot.</h4>
-  </div>
-  <div class="right_main">
-    <!-- <h1>Welcome to My Website</h1> -->
-    <form id="locationForm" method="POST" action="{% url 'restaurant_list' %}">
-      {% csrf_token %}
-      <input type="hidden" id="latitudeDisplay" name="latitude">
-      <input type="hidden" id="longitudeDisplay" name="longitude">
+  </div> -->
+  <!-- <div class="right_main"> -->
+  <!-- <h1>Welcome to My Website</h1> -->
+  <p id="fullscreen-heading">Discover the Tasty Near by</p>
+  <p id="fullscreen-subheading">Discover your perfect Meal</p>
+  <form id="locationForm" method="POST" action="{% url 'restaurant_list' %}">
+    {% csrf_token %}
+    <input type="hidden" id="latitudeDisplay" name="latitude">
+    <input type="hidden" id="longitudeDisplay" name="longitude">
 
-      <!-- id-> city1 updates the value using javascript -->
-      <p id="city1"></p>
+    <!-- id-> city1 updates the value using javascript -->
+    <p id="city1"></p>
 
-      <label for="radius" style="color:white">Radius (km):</label>
-      <input type="number" id="radius" name="radius" required placeholder="Enter Kilometer">
+    <label for="radius" style="color:white">Radius (km):</label>
+    <input type="number" id="radius" name="radius" required placeholder="Enter Kilometer">
 
-      <button type="submit" onclick="fetchUserLocation()"><i class="fa-brands fa-cloudflare "></i>Find
-        Restaurants</button>
+    <button type="submit" onclick="fetchUserLocation()"><i class="fa-brands fa-cloudflare "></i>Find
+      Restaurants</button>
 
-    </form>
-    <!-- <button class="search-nearby-btn mt-3" onclick="fetchUserLocation()"> -->
-    <!-- <p class="location_get_text" >Find Restaurants </p> -->
-    </button>
-    <input type="hidden" name="latitude" id="latitudeDisplay">
-    <input type="hidden" name="longitude" id="longitudeDisplay">
+  </form>
+  <!-- <button class="search-nearby-btn mt-3" onclick="fetchUserLocation()"> -->
+  <!-- <p class="location_get_text" >Find Restaurants </p> -->
+  </button>
+  <input type="hidden" name="latitude" id="latitudeDisplay">
+  <input type="hidden" name="longitude" id="longitudeDisplay">
 
-    <!-- <p>Latitude: <span id="latitudeDisplay"></span></p>
+  <!-- <p>Latitude: <span id="latitudeDisplay"></span></p>
                   <p>Longitude: <span id="longitudeDisplay"></span></p> -->
-    <!-- <p>Your Location: <span id="city"></span></p> -->
+  <!-- <p>Your Location: <span id="city"></span></p> -->
 
-    </form>
+  </form>
 
-  </div>
+  <!-- </div> -->
 </div>
 
 
@@ -58,8 +61,13 @@
 
 
 
+
+
+
 <!-- Accordion Frequently Asked Questions-->
-<h3 id="accordion">Frequently Asked Questions</h3>
+<h3 id="accordion"><img src="{% static './images/FAQ.svg' %}" alt="SVG Image"
+    style="width: 24px;height: auto;">
+  Frequently Asked Questions</h3>
 <div class="accordion" id="accordionExample">
   <div class="accordion-item">
     <h2 class="accordion-header">
@@ -105,8 +113,49 @@
       </div>
     </div>
   </div>
+</div>
 
+<!-- #ABOUT US SECTION -->
+<div id="aboutus" class="aboutus-section">
+  <div class="aboutus-content">
+    <h2>About Us</h2>
+    <p>Welcome to our website, where we make it easy for you to discover the best places to stay and dine nearby. Our
+      service is dedicated to providing you with a seamless experience in finding the perfect accommodations and
+      delicious dining options.</p>
+    <p>We pride ourselves on offering a user-friendly search bar and interactive map to help you locate nearby hotels,
+      restaurants, and resorts. With detailed listings that include images, descriptions, amenities, and sorting
+      options, you can easily find the perfect place for your needs.
+    </p>
+    <p>Our online ordering system makes it convenient for you to browse menus, view item descriptions and images, and
+      complete your purchase with a simple checkout process. We also value your feedback, so don't hesitate to leave
+      reviews and star ratings for menu items.
+    </p>
+    <p>"For questions or concerns, visit our help page featuring a form for compliments or issues, a FAQ section, and
+      clear customer support contact details. Embrace our elegant purple and violet theme for an unforgettable
+      experience."</p>
+  </div>
+  <div class="aboutus-image">
+    <img src="{% static './images/contact_us/about_us.jpg' %}" alt="About Us Image">
+  </div>
+</div>
 
+<!-- Why Us Section -->
+<div id="whyus" class="section whyus-section">
+  <div class="whyus-image">
+    <img src="{% static './images/contact_us/whyus.jpg' %}" alt="Why Us Image">
+  </div>
+  <div class="whyus-content">
+    <h2>Why Us</h2>
+    <ul>
+      <li><span class="tick-mark">✔</span> Detailed listing</li>
+      <p>Comprehensive information,images, descriptions, and sorting options for user Convenience</p>
+      <li><span class="tick-mark">✔</span> Customer Reviews and Ratings</li>
+      <p>Community-driven platform for sharing experiences througn menu item reviews and star ratings</p>
+      <li><span class="tick-mark">✔</span> Dedicated Help page and customer supprot</li>
+      <p>Prioritizes customer satisfaction with dedicated help page, FAQs, and easy contact for support</p>
+      <!-- <li><span class="tick-mark">✔</span> Regularly updated content</li> -->
+    </ul>
+  </div>
 </div>
 
 <section class="testimonials-section">
@@ -134,15 +183,40 @@
   </div>
 </section>
 
-<script>
-
-
-</script>
-
-<script src=""></script>
-
-
-
+<!-- Contact Us Section -->
+<div class="contact-container">
+  <div class="contact-form">
+    <h2>Contact Us</h2>
+    <form action="{% url 'index' %}" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="admin_email" value="grajesh2906@gmail.com">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your Name" required>
+      </div>
+      <div class="form-group">
+        <label for="user_email">Email</label>
+        <input type="email" id="user_email" name="user_email" placeholder="Your Email" required>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit">Send Message</button>
+      </div>
+    </form>
+  </div>
+  <div class="map">
+    <!-- <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.107924908935!2d144.96305831565402!3d-37.81362744251633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf0727e268f19e25!2sVictoria%20State%20Library%20Melbourne!5e0!3m2!1sen!2sau!4v1619096601184!5m2!1sen!2sau"
+          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe> -->
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7768.138802180084!2d79.12320309166194!3d13.22095939297723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bad595f2b04c5d1%3A0x3bfc9c0d9c25bf4e!2sIndustrial%20Estate%2C%20Chittoor%2C%20Andhra%20Pradesh%20517001!5e0!3m2!1sen!2sin!4v1721717399519!5m2!1sen!2sin"
+      width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</div>
 
 {% endblock body %}
 <!-- Adding External Script files -->
@@ -150,9 +224,11 @@
 <script src="{% static './js/location.js' %}"></script>
 <script>
   const images = [
-    "{% static './images/image-1.jpg' %}",
-    "{% static './images/img-1.png' %}",
-    "{% static './images/restaurant_main.jpg' %}"
+    "{% static './images/main-slider/main-slider-1.jpg' %}",
+    // "{% static './images/main-slider/main-slider-2.jpg' %}",
+    // "{% static './images/main-slider/main-slider-3.jpg' %}",
+    "{% static './images/main-slider/main-slider-4.jpg' %}",
+    "{% static './images/main-slider/main-slider-5.jpg' %}",
   ]; // List of your images
 
   let currentIndex = 0;
@@ -163,15 +239,15 @@
     const nextImage = images[currentIndex];
     backgroundElement.style.background = `url('${nextImage}') no-repeat center center/cover`;
     // Smoothly transition background change
-    backgroundElement.style.transition = 'background 1s ease';
+    backgroundElement.style.transition = 'background 1s  ease-in';
     backgroundElement.style.background = `url('${nextImage}') no-repeat center center/cover`;
 
-        setTimeout(() => {
-            backgroundElement.style.transition = ''; // Reset transition after animation
-        }, 1000); // Delay should match transition duration
+    setTimeout(() => {
+      backgroundElement.style.transition = ''; // Reset transition after animation
+    }, 1000); // Delay should match transition duration
 
-        setTimeout(changeBackground, 3000); // Change image every 3 seconds
-    }
+    setTimeout(changeBackground, 3000); // Change image every 3 seconds
+  }
 
   changeBackground(); // Start the slideshow
 </script>

@@ -3,6 +3,7 @@
 
 :root{
     --card-border-color: #EB5B00;
+    --heading-color :  #EB5B00;
 }
 
 
@@ -392,6 +393,8 @@ img:hover {
 .reviews-container h1 {
     text-align: center;
     margin-bottom: 20px;
+    padding: 1rem;
+    color: var(--heading-color);
 }
 
 .reviews-row {
@@ -460,6 +463,8 @@ img:hover {
     display: inline-block;
     margin-top: 0px;
 }
+
+
 
 @media (max-width: 768px) {
     .review {
@@ -542,7 +547,8 @@ img:hover {
     width: 71%;
 }
 #review-heading{
-    color: #e7450a;
+    color: var(--heading-color);
+    padding: 0.9rem;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
@@ -565,4 +571,98 @@ img:hover {
 }
 
 
+
+
+
+
+/* General Container Styling */
+#menu-div-filter{
+    display: flex;
+    justify-content: space-between;
+}
+.container-fluid.menu-div {
+    padding: 20px;
+    background-color: #f8f9fa; /* Light grey background */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Menu Heading */
+.menu-heading {
+    margin: 10px 0;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 24px;
+    color: #333;
+    border-bottom: 2px solid #007bff; /* Blue underline */
+}
+
+/* Filter Form */
+#filter-form {
+    display: flex;
+    justify-content: flex-end;
+    /* flex-direction: ; */
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Range Slider */
+.range-slider {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.range-slider label {
+    font-size: 16px;
+    color: #555;
+}
+
+.range-slider input[type="range"] {
+    width: 100%;
+    height: 8px;
+    background: #ddd;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.range-slider input[type="range"]::-webkit-slider-thumb {
+    width: 20px;
+    height: 20px;
+    background: #007bff; /* Blue color */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.range-slider input[type="range"]:hover {
+    background: #ccc;
+}
+
+/* Filter Button */
+.filter-button {
+    align-self: flex-start;
+    padding: 10px 20px;
+    background-color: blue; /* Blue background */
+    color: white; /* White text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 90px;
+    text-align: center;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition for background and transform */
+}
+
+.filter-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slightly increase size on hover */
+}
+
+.filter-button:active {
+    background-color: #003f7f; /* Even darker blue on click */
+    transform: scale(0.95); /* Slightly decrease size on click */
+}
 

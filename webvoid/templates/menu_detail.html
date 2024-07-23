@@ -38,7 +38,7 @@
         
         
         <div class="col-md-6">
-            <h1 class="my-4">{{ menu.menu_name }}</h1>
+            <h1 class="my-4" id="menu-name">{{ menu.menu_name }}</h1>
             <div class="menu-details">
                 <h3>Amount: &#8377; {{ menu.amount }}</h3>
                 <p><strong>Details:</strong> {{ menu.related_menu_details }}</p>
@@ -62,7 +62,7 @@
 </div>
 <hr>
 
-<h2>Leave a Review about {{ menu.menu_name }}</h2>
+<h2 id="review-heading">Leave a Review about {{ menu.menu_name }}</h2>
 <form method="post" action=" ">
     {% csrf_token %}
     <input type="hidden" name="menu_id" value="{{ menu.id }}" >

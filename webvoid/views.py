@@ -1,15 +1,45 @@
 from django.shortcuts import render, redirect
 
 # Create your views here.
+from django.core.mail import send_mail
+from django.conf import settings
+
 def index(req):
     if req.method == 'POST':
-        latitude = req.POST.get('latitude')
-        longitude = req.POST.get('longitude')
+        if 'latitude' in req.POST and 'longitude' in req.POST:
+            # Handle location data
+            latitude = req.POST.get('latitude')
+            longitude = req.POST.get('longitude')
+            
+            # Store location data in the session
+            req.session['latitude'] = latitude
+            req.session['longitude'] = longitude
         
-        # Store location data in the session
-        req.session['latitude'] = latitude
-        req.session['longitude'] = longitude
+        elif 'name' in req.POST and 'message' in req.POST:
+            # Handle contact form submission
+            name = req.POST.get('name')
+            email = req.POST.get('email')
+            message = req.POST.get('message')
+            
+            # Send email to admin
+            send_mail(
+                    subject=f'Contact Us Message from {name}',
+                    message=f"""
+                        Name : {name}
+                        Email : {email}
+                        Message : {message}
+                    """,
+                    #From email is congigured in settings.py grajesh2907@gmail.com
+                    #https://myaccount.google.com/u/1/apppasswords?rapt=AEjHL4Pl93YfXxYImlyf4JGj0pd-4ReC3qWD8qTkc6Z_AB2rqqnLKxvMMM6q6iZCWJBHda3ZKXhY-th4Wcv9JbHGsLJ51zuNQZ9yieWYPl3cBIG-_AhfFos
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    # CC
+                    recipient_list=[settings.ADMIN_EMAIL, 'grajesh2906@gmail.com'],
+                    fail_silently=False,
+                )
+            # Render a specific HTML template upon successful form submission
+            return render(req, "contact/contact_success.html")
     return render(req, "index.html")
+
 # myapp/views.py
 from django.shortcuts import render
 from .models import Restaurant,Menu, RestaurantReview, MenuReview
@@ -51,16 +81,28 @@ def restaurant_list(request):
 
 
 
+
 from django.shortcuts import render, get_object_or_404
+from .models import Menu, Restaurant, RestaurantReview
 
 def restaurant_detail(request, pk):
+    # Fetch restaurant, menus, and reviews
     restaurant = get_object_or_404(Restaurant, pk=pk)
-    # fetching menus from the particular restaurant
     menus = Menu.objects.filter(restaurant=restaurant).order_by('amount')
-    # getting reviews from the database
-    # Fetch approved reviews for the restaurant
     reviews = RestaurantReview.objects.filter(restaurant=restaurant, is_approved=True)
-    # up to here we fetched the data from the database
+
+    # Get the max_amount filter parameter
+    max_amount = request.GET.get('max_amount', 1000)
+
+    try:
+        # Convert max_amount to an integer
+        max_amount = int(max_amount)
+    except ValueError:
+        # Handle the case where max_amount is not a valid integer
+        max_amount = 1000  # Default value
+
+    # Apply the filter to the menus queryset
+    menus = menus.filter(amount__lte=max_amount)
 
     if request.method == 'POST':
         restaurant_id = request.POST.get('restaurant_id')
@@ -69,42 +111,41 @@ def restaurant_detail(request, pk):
         rating = request.POST.get('rating')
 
         try:
-            # Retrieve the restaurant object or raise 404 if not found
-            restaurant = get_object_or_404(Restaurant, id=restaurant_id)
-            
             # Create a new review object
+            restaurant = get_object_or_404(Restaurant, id=restaurant_id)
             review = RestaurantReview.objects.create(
                 restaurant=restaurant,
                 user_name=user_name,
                 review_text=review_text,
                 rating=rating
             )
-            # again here we are fetching the same data which we fetched above because bacause here we are writing the if condition(inside the block) it indicates the local memory scope
-            # and also we are handling the form request in the same page so when we refresh the data old data will be erased so in order to display the data we pass the same data again 
-            restaurant = get_object_or_404(Restaurant, pk=pk)
-            # fetching menus from the particular restaurant
-            menus = Menu.objects.filter(restaurant=restaurant).order_by('amount')
-            # getting reviews from the database
+            # Fetch updated data
             reviews = RestaurantReview.objects.filter(restaurant=restaurant, is_approved=True)
 
-            
-
-            # Prepare the alert message to display in the same template
-            return render(request, 'restaurant_details.html',
-                           {'alert_message': 'Review submitted successfully!',
-                            'restaurant': restaurant ,
-                            'menus': menus, 
-                            'reviews': reviews})
+            # Return with success message
+            return render(request, 'restaurant_details.html', {
+                'alert_message': 'Review submitted successfully!',
+                'restaurant': restaurant,
+                'menus': menus,
+                'reviews': reviews,
+                'max_amount': max_amount,  # Pass the max_amount to the template
+            })
         except ValueError:
-            return render(request, 'restaurant_details.html', {'alert_message': 'Invalid data format.'})
+            return render(request, 'restaurant_details.html', {
+                'alert_message': 'Invalid data format.',
+                'restaurant': restaurant,
+                'menus': menus,
+                'reviews': reviews,
+                'max_amount': max_amount,  # Pass the max_amount to the template
+            })
 
+    return render(request, 'restaurant_details.html', {
+        'restaurant': restaurant,
+        'menus': menus,
+        'reviews': reviews,
+        'max_amount': max_amount,  # Pass the max_amount to the template
+    })
 
-    return render(request, 'restaurant_details.html', {'restaurant': restaurant ,
-                                                        'menus': menus, 
-                                                        'reviews': reviews})
-
-
-from django.shortcuts import render, get_object_or_404
 from .models import Menu, MenuReview
 
 def menu_detail(request, pk):
